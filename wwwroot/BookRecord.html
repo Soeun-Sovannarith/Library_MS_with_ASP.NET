@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Borrow Records</title>
+</head>
+<body>
+    <h1>Borrow Book</h1>
+    MemberID: <input type="number" id="memberId"><br>
+    BookID: <input type="number" id="bookId"><br>
+    <button onclick="borrowBook()">Borrow</button>
+
+    <h2>Borrow List</h2>
+    <table border="1" id="borrowTable">
+        <tr><th>ID</th><th>Book</th><th>Member</th><th>Borrow Date</th><th>Return Date</th><th>Status</th><th>Action</th></tr>
+    </table>
+
+    <script>
+        async function loadBorrowRecords() {
+            const res = await fetch('https://localhost:7240/api/BorrowRecords');
+            const records = await res.json();
+            const table = document.getElementById('borrowTable');
+            table.innerHTML = '<tr><th>ID</th><th>Book</th><th>Member</th><th>Borrow Date</th><th>Return Date</th><th>Status</th><th>Action</th></tr>';
+            records.forEach(r => {
+                const row = table.insertRow();
+                row.innerHTML = `<td>${r.borrowID}</td><td>${r.book.title}</td><td>${r.member.firstName} ${r.member.lastName}</td><td>${new Date(r.borrowDate).toLocaleDateString()}</td><td>${r.returnDate ? new Date(r.returnDate).toLocaleDateString() : ''}</td><td>${r.status}</td><td>${r.status==='Borrowed'?'<button onclick="returnBook('+r.borrowID+')">Return</button>':''}</td>`;
+            });
+        }
+
+        async function borrowBook() {
+            const memberId = document.getElementById('memberId').value;
+            const bookId = document.getElementById('bookId').value;
+            await fetch('https://localhost:5109/api/BorrowRecords', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ memberID: parseInt(memberId), bookID: parseInt(bookId) })
+            });
+            loadBorrowRecords();
+        }
+
+        async function returnBook(id) {
+            await fetch(`https://localhost:5109/api/BorrowRecords/${id}/return`, { method: 'PUT' });
+            loadBorrowRecords();
+        }
+
+        loadBorrowRecords();
+    </script>
+</body>
+</html>

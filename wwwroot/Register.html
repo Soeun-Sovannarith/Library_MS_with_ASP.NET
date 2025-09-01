@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register Member</title>
+</head>
+<body>
+    <h1>Register New Member</h1>
+    First Name: <input id="firstName"><br>
+    Last Name: <input id="lastName"><br>
+    Email: <input id="email"><br>
+    Phone: <input id="phone"><br>
+    <button onclick="registerMember()">Register</button>
+
+    <script>
+        async function registerMember() {
+            const member = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value
+            };
+            await fetch('https://localhost:5109/api/Members', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(member)
+            });
+            alert('Member registered!');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/ppc/Desktop/Library_MS/wwwroot/BookRecord.html",
+      "PackagePath": "staticwebassets/BookRecord.html"
+    },
+    {
+      "Id": "/Users/ppc/Desktop/Library_MS/wwwroot/BorrowList.html",
+      "PackagePath": "staticwebassets/BorrowList.html"
+    },
+    {
+      "Id": "/Users/ppc/Desktop/Library_MS/wwwroot/Register.html",
+      "PackagePath": "staticwebassets/Register.html"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Library_MS.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.Library_MS.props",
+      "PackagePath": "build\\Library_MS.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.Library_MS.props",
+      "PackagePath": "buildMultiTargeting\\Library_MS.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.Library_MS.props",
+      "PackagePath": "buildTransitive\\Library_MS.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

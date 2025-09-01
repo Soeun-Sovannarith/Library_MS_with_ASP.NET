@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "W6hNUnHeEFsz+kkL0HV/E7OlYDRLQwRPrcxwzA/Lkq8=",
+  "Source": "Library_MS",
+  "BasePath": "_content/Library_MS",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Library_MS/wwwroot",
+      "Source": "Library_MS",
+      "ContentRoot": "/Users/ppc/Desktop/Library_MS/wwwroot/",
+      "BasePath": "_content/Library_MS",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/ppc/Desktop/Library_MS/wwwroot/BookRecord.html",
+      "SourceId": "Library_MS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/ppc/Desktop/Library_MS/wwwroot/",
+      "BasePath": "_content/Library_MS",
+      "RelativePath": "BookRecord.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/BookRecord.html"
+    },
+    {
+      "Identity": "/Users/ppc/Desktop/Library_MS/wwwroot/BorrowList.html",
+      "SourceId": "Library_MS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/ppc/Desktop/Library_MS/wwwroot/",
+      "BasePath": "_content/Library_MS",
+      "RelativePath": "BorrowList.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/BorrowList.html"
+    },
+    {
+      "Identity": "/Users/ppc/Desktop/Library_MS/wwwroot/Register.html",
+      "SourceId": "Library_MS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/ppc/Desktop/Library_MS/wwwroot/",
+      "BasePath": "_content/Library_MS",
+      "RelativePath": "Register.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Register.html"
+    }
+  ]
+}
