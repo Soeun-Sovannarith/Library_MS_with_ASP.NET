@@ -47,3 +47,4 @@
 /Users/ppc/Desktop/Library_MS/obj/Debug/net8.0/Library_MS.pdb
 /Users/ppc/Desktop/Library_MS/obj/Debug/net8.0/Library_MS.genruntimeconfig.cache
 /Users/ppc/Desktop/Library_MS/obj/Debug/net8.0/ref/Library_MS.dll
+/Users/ppc/Desktop/Library_MS/obj/Debug/net8.0/Library_MS.sourcelink.json

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Books List</title>
+  <!-- Bootstrap for nice styles -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .book-cover {
+      width: 50px;
+      height: 75px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <h1 class="text-center mb-4">📚 Books List</h1>
+    <div class="table-responsive shadow-sm">
+      <table class="table table-bordered table-hover align-middle" id="bookTable">
+        <thead class="table-dark">
+          <tr>
+            <th>Cover</th>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Published</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    async function loadBooks() {
+      try {
+        const res = await fetch('http://localhost:5109/api/books');
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        
+        const books = await res.json();
+        console.log(books);
+
+        const tbody = document.querySelector('#bookTable tbody');
+        tbody.innerHTML = '';
+
+        books.forEach(b => {
+          const row = tbody.insertRow();
+
+          // Generate cover URL from ISBN
+          const coverUrl = b.isbn 
+            ? `https://covers.openlibrary.org/b/isbn/${b.isbn}-M.jpg`
+            : 'https://via.placeholder.com/50x75?text=No+Cover';
+
+          row.innerHTML = `
+            <td>
+            <img 
+                src="${coverUrl}" 
+                class="book-cover d-block mx-auto"
+                style="width:70px; height:100px; object-fit:cover; border-radius:4px;" 
+                onerror="this.src='https://via.placeholder.com/70x100?text=No+Cover'">
+            </td>
+            <td>${b.bookID}</td>
+            <td>${b.title}</td>
+            <td>${b.author}</td>
+            <td>${b.isbn || '-'}</td>
+            <td>${b.publishedDate ? new Date(b.publishedDate).toLocaleDateString() : '-'}</td>
+            <td>${b.quantity}</td>
+          `;
+        });
+      } catch (error) {
+        console.error('Error fetching books:', error);
+        alert('Failed to load books. Check console for details.');
+      }
+    }
+
+    loadBooks();
+  </script>
+</body>
+</html>

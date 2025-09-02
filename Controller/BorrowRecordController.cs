@@ -3,54 +3,61 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
-using Library_MS.Model.BorrowRecord; // BorrowRecord model
-using Library_MS.Data;               // DbContext
+using Library_MS.Model.BorrowRecord;
+using Library_MS.Data;
+using Library_MS.DTO;
 
 namespace Library_MS.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class BorrowRecordsController : ControllerBase
-    {
-        private readonly LibraryContext _context;
+[ApiController]
+public class BorrowRecordController : ControllerBase
+{
+    private readonly LibraryContext _context;
 
-        public BorrowRecordsController(LibraryContext context)
+        public BorrowRecordController(LibraryContext context)
         {
             _context = context;
         }
 
-        // GET: api/BorrowRecords
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BorrowRecord>>> GetBorrowRecords()
         {
             return await _context.BorrowRecords
                 .Include(b => b.Book)
-                .Include(b => b.Student) // Update from Member to Student
+                .Include(b => b.Student)
                 .ToListAsync();
         }
 
-        // POST: api/BorrowRecords
         [HttpPost]
-        public async Task<ActionResult<BorrowRecord>> BorrowBook(BorrowRecord record)
-        {
-            record.BorrowDate = DateTime.Now;
-            record.Status = "Borrowed";
-            _context.BorrowRecords.Add(record);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetBorrowRecords), new { id = record.BorrowID }, record);
-        }
+    public async Task<ActionResult<BorrowRecord>> BorrowBook(BorrowRecordCreateDto dto)
+    {
+    var record = new BorrowRecord
+    {
+        BookID = dto.BookID,
+        StudentID = dto.StudentID,
+        BorrowDate = DateTime.Now,
+        Status = "Borrowed"
+    };
 
-        // PUT: api/BorrowRecords/{id}/return
+    _context.BorrowRecords.Add(record);
+    await _context.SaveChangesAsync();
+
+    return CreatedAtAction(nameof(GetBorrowRecords), new { id = record.BorrowID }, record);
+}
+
         [HttpPut("{id}/return")]
         public async Task<IActionResult> ReturnBook(int id)
         {
-            var record = await _context.BorrowRecords.FindAsync(id);
-            if (record == null) return NotFound();
+        var record = await _context.BorrowRecords.FindAsync(id);
+        if (record == null) return NotFound();
 
-            record.ReturnDate = DateTime.Now;
-            record.Status = "Returned";
-            await _context.SaveChangesAsync();
-            return NoContent();
+        record.ReturnDate = DateTime.Now;
+        record.Status = "Returned";
+        await _context.SaveChangesAsync();
+        return NoContent();
         }
     }
+
 }
+

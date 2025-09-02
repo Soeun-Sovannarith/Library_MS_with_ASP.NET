@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Management - Borrow Records</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+    <h1 class="text-center mb-4">Borrow Book</h1>
+
+    <!-- Borrow Form -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <form id="borrowForm" class="row g-3">
+                <div class="col-md-4">
+                    <label for="studentId" class="form-label">Student ID</label>
+                    <input type="number" class="form-control" id="studentId" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="bookId" class="form-label">Book ID</label>
+                    <input type="number" class="form-control" id="bookId" required>
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="button" class="btn btn-primary w-100" onclick="borrowBook()">Borrow</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Borrow Records Table -->
+    <h2 class="mb-3">Borrow List</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="borrowTable">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Book</th>
+                    <th>Student</th>
+                    <th>Borrow Date</th>
+                    <th>Return Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+async function loadBorrowRecords() {
+    try {
+        const res = await fetch('http://localhost:5109/api/borrowrecord');
+        const records = await res.json();
+        const tbody = document.querySelector('#borrowTable tbody');
+        tbody.innerHTML = '';
+
+        records.forEach(r => {
+            const row = tbody.insertRow();
+            const returnDateText = r.returnDate ? new Date(r.returnDate).toLocaleDateString() : '';
+
+            row.innerHTML = `
+                <td>${r.borrowID}</td>
+                <td>${r.book ? r.book.title : 'Unknown'}</td>
+                <td>${r.student ? r.student.firstName + ' ' + r.student.lastName : 'Unknown'}</td>
+                <td>${new Date(r.borrowDate).toLocaleDateString()}</td>
+                <td class="returnDate">${returnDateText}</td>
+                <td>${r.status}</td>
+                <td class="text-center">
+                    ${r.status === 'Borrowed' ? `<button class="btn btn-sm btn-success" onclick="returnBook(this, ${r.borrowID})">Return</button>` : ''}
+                </td>
+            `;
+        });
+    } catch (err) {
+        alert('Failed to load borrow records: ' + err);
+    }
+}
+
+async function borrowBook() {
+    const studentId = parseInt(document.getElementById('studentId').value);
+    const bookId = parseInt(document.getElementById('bookId').value);
+
+    try {
+        const response = await fetch('http://localhost:5109/api/borrowrecord', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                StudentID: studentId,
+                BookID: bookId
+            })
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            alert('Error: ' + errorText);
+            return;
+        }
+
+        await loadBorrowRecords();
+        document.getElementById('borrowForm').reset();
+    } catch (err) {
+        alert('Failed to borrow book: ' + err);
+    }
+}
+
+async function returnBook(button, id) {
+    try {
+        const res = await fetch(`http://localhost:5109/api/borrowrecord/${id}/return`, { method: 'PUT' });
+        if (!res.ok) {
+            const errorText = await res.text();
+            alert('Error: ' + errorText);
+            return;
+        }
+
+        const row = button.closest('tr');
+        const now = new Date();
+        row.querySelector('.returnDate').textContent = now.toLocaleDateString();
+        row.cells[5].textContent = 'Returned';
+        button.remove();
+    } catch (err) {
+        alert('Failed to return book: ' + err);
+    }
+}
+
+// Load table on page load
+loadBorrowRecords();
+</script>
+
+</body>
+</html>

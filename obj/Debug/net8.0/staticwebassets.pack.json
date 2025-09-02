@@ -1,16 +1,16 @@
 {
   "Files": [
     {
-      "Id": "/Users/ppc/Desktop/Library_MS/wwwroot/BookRecord.html",
-      "PackagePath": "staticwebassets/BookRecord.html"
+      "Id": "/Users/ppc/Desktop/Library_MS/wwwroot/book.html",
+      "PackagePath": "staticwebassets/book.html"
     },
     {
-      "Id": "/Users/ppc/Desktop/Library_MS/wwwroot/BorrowList.html",
-      "PackagePath": "staticwebassets/BorrowList.html"
+      "Id": "/Users/ppc/Desktop/Library_MS/wwwroot/borrow.html",
+      "PackagePath": "staticwebassets/borrow.html"
     },
     {
-      "Id": "/Users/ppc/Desktop/Library_MS/wwwroot/Register.html",
-      "PackagePath": "staticwebassets/Register.html"
+      "Id": "/Users/ppc/Desktop/Library_MS/wwwroot/register.html",
+      "PackagePath": "staticwebassets/register.html"
     },
     {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Library_MS.Microsoft.AspNetCore.StaticWebAssets.props",

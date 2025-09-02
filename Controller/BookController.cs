@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Library_MS.Model.Book;  // Make sure Book class is here
-using Library_MS.Data;            // Your DbContext namespace
+using Library_MS.Model.Book;  
+using Library_MS.Data;            
 
 namespace Library_MS.Controllers
 {

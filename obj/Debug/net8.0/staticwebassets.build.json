@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "W6hNUnHeEFsz+kkL0HV/E7OlYDRLQwRPrcxwzA/Lkq8=",
+  "Hash": "Dm/AiKT5FwFGCp1tom2WSez7uMjX/+ulbPtm/HfZLPs=",
   "Source": "Library_MS",
   "BasePath": "_content/Library_MS",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "/Users/ppc/Desktop/Library_MS/wwwroot/BookRecord.html",
+      "Identity": "/Users/ppc/Desktop/Library_MS/wwwroot/book.html",
       "SourceId": "Library_MS",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/ppc/Desktop/Library_MS/wwwroot/",
       "BasePath": "_content/Library_MS",
-      "RelativePath": "BookRecord.html",
+      "RelativePath": "book.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -33,15 +33,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/BookRecord.html"
+      "OriginalItemSpec": "wwwroot/book.html"
     },
     {
-      "Identity": "/Users/ppc/Desktop/Library_MS/wwwroot/BorrowList.html",
+      "Identity": "/Users/ppc/Desktop/Library_MS/wwwroot/borrow.html",
       "SourceId": "Library_MS",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/ppc/Desktop/Library_MS/wwwroot/",
       "BasePath": "_content/Library_MS",
-      "RelativePath": "BorrowList.html",
+      "RelativePath": "borrow.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -52,15 +52,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/BorrowList.html"
+      "OriginalItemSpec": "wwwroot/borrow.html"
     },
     {
-      "Identity": "/Users/ppc/Desktop/Library_MS/wwwroot/Register.html",
+      "Identity": "/Users/ppc/Desktop/Library_MS/wwwroot/register.html",
       "SourceId": "Library_MS",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/ppc/Desktop/Library_MS/wwwroot/",
       "BasePath": "_content/Library_MS",
-      "RelativePath": "Register.html",
+      "RelativePath": "register.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -71,7 +71,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Register.html"
+      "OriginalItemSpec": "wwwroot/register.html"
     }
   ]
 }

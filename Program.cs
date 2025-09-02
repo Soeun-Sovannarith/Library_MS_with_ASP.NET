@@ -3,7 +3,6 @@ using Library_MS.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 // MySQL connection string
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -14,20 +13,35 @@ builder.Services.AddDbContext<LibraryContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
-// Enable serving static files
+
+// Enable Swagger (API docs)
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+// Redirect HTTP → HTTPS
+app.UseHttpsRedirection();
+
+// Serve static files from wwwroot
+app.UseDefaultFiles();   // looks for index.html
 app.UseStaticFiles();
 
-// Optional: Enable default file mapping (so wwwroot/index.html is served on root "/")
-app.UseDefaultFiles();
+app.UseCors();
 
-// Map controllers
+// Map API controllers
 app.MapControllers();
-app.UseSwagger();
-app.UseSwaggerUI();
-app.UseHttpsRedirection();
-app.MapControllers();
+
 app.Run();

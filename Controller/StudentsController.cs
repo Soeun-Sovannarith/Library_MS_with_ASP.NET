@@ -2,12 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Library_MS.Model.Student;  // Make sure your Student class is here
-using Library_MS.Data;            // Your DbContext namespace
+using Library_MS.Model.Student;  
+using Library_MS.Data;            
 
 namespace Library_MS.Controllers
 {
-    [Route("api/Student")]
+    [Route("api/[controller]")]
     [ApiController]
     public class StudentsController : ControllerBase
     {
