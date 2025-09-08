@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Dm/AiKT5FwFGCp1tom2WSez7uMjX/+ulbPtm/HfZLPs=",
+  "Hash": "yOPKT43Qf1hpKp1S9K2Zpl1sbujRe0tikYy/m8n3hoc=",
   "Source": "Library_MS",
   "BasePath": "_content/Library_MS",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/register.html"
+    },
+    {
+      "Identity": "/Users/ppc/Desktop/Library_MS/wwwroot/student.html",
+      "SourceId": "Library_MS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/ppc/Desktop/Library_MS/wwwroot/",
+      "BasePath": "_content/Library_MS",
+      "RelativePath": "student.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/student.html"
     }
   ]
 }

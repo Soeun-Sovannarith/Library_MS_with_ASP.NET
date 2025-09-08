@@ -17,6 +17,12 @@
 <body class="bg-light">
   <div class="container py-5">
     <h1 class="text-center mb-4">📚 Books List</h1>
+
+    <!-- Search box -->
+    <div class="mb-3">
+      <input type="text" id="searchInput" class="form-control" placeholder="Search by Title, Author, or ISBN">
+    </div>
+
     <div class="table-responsive shadow-sm">
       <table class="table table-bordered table-hover align-middle" id="bookTable">
         <thead class="table-dark">
@@ -36,46 +42,59 @@
   </div>
 
   <script>
+    let booksList = []; // Store fetched books for searching
+
     async function loadBooks() {
       try {
         const res = await fetch('http://localhost:5109/api/books');
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         
-        const books = await res.json();
-        console.log(books);
-
-        const tbody = document.querySelector('#bookTable tbody');
-        tbody.innerHTML = '';
-
-        books.forEach(b => {
-          const row = tbody.insertRow();
-
-          // Generate cover URL from ISBN
-          const coverUrl = b.isbn 
-            ? `https://covers.openlibrary.org/b/isbn/${b.isbn}-M.jpg`
-            : 'https://via.placeholder.com/50x75?text=No+Cover';
-
-          row.innerHTML = `
-            <td>
-            <img 
-                src="${coverUrl}" 
-                class="book-cover d-block mx-auto"
-                style="width:70px; height:100px; object-fit:cover; border-radius:4px;" 
-                onerror="this.src='https://via.placeholder.com/70x100?text=No+Cover'">
-            </td>
-            <td>${b.bookID}</td>
-            <td>${b.title}</td>
-            <td>${b.author}</td>
-            <td>${b.isbn || '-'}</td>
-            <td>${b.publishedDate ? new Date(b.publishedDate).toLocaleDateString() : '-'}</td>
-            <td>${b.quantity}</td>
-          `;
-        });
+        booksList = await res.json(); // Save for search
+        renderBooks(booksList);
       } catch (error) {
         console.error('Error fetching books:', error);
         alert('Failed to load books. Check console for details.');
       }
     }
+
+    function renderBooks(books) {
+      const tbody = document.querySelector('#bookTable tbody');
+      tbody.innerHTML = '';
+
+      books.forEach(b => {
+        const row = tbody.insertRow();
+        const coverUrl = b.isbn 
+          ? `https://covers.openlibrary.org/b/isbn/${b.isbn}-M.jpg`
+          : 'https://via.placeholder.com/50x75?text=No+Cover';
+
+        row.innerHTML = `
+          <td>
+            <img 
+              src="${coverUrl}" 
+              class="book-cover d-block mx-auto"
+              style="width:70px; height:100px; object-fit:cover; border-radius:4px;" 
+              onerror="this.src='https://via.placeholder.com/70x100?text=No+Cover'">
+          </td>
+          <td>${b.bookID}</td>
+          <td>${b.title}</td>
+          <td>${b.author}</td>
+          <td>${b.isbn || '-'}</td>
+          <td>${b.publishedDate ? new Date(b.publishedDate).toLocaleDateString() : '-'}</td>
+          <td>${b.quantity}</td>
+        `;
+      });
+    }
+
+    // Search function
+    document.getElementById('searchInput').addEventListener('input', function() {
+      const query = this.value.toLowerCase();
+      const filtered = booksList.filter(b => 
+        (b.title && b.title.toLowerCase().includes(query)) ||
+        (b.author && b.author.toLowerCase().includes(query)) ||
+        (b.isbn && b.isbn.toLowerCase().includes(query))
+      );
+      renderBooks(filtered);
+    });
 
     loadBooks();
   </script>

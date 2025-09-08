@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets/register.html"
     },
     {
+      "Id": "/Users/ppc/Desktop/Library_MS/wwwroot/student.html",
+      "PackagePath": "staticwebassets/student.html"
+    },
+    {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Library_MS.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
